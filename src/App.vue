@@ -1,16 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <app-navbar></app-navbar>
+    <router-view />
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";
+import Navbar from "@/components/navbar/Navbar.vue";
+
+@Component({
+  components: {
+    appNavbar: Navbar
+  }
+})
+export default class App extends Vue {
+  created() {
+    this.$store.dispatch("getRecipes", "pancakes");
+  }
+}
+</script>
+
 <style>
+body {
+  padding-top: 7%;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
